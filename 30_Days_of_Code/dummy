@@ -1,0 +1,52 @@
+package br.com;
+
+public class SCMain {
+
+	static class HourGlass implements Comparable<HourGlass>{
+		int[] values = new int[7];
+		public HourGlass(final int[][] values, int x, int y) {
+		}
+		int sum() {
+			int s = 0;
+			for (int v : values) s += v;
+			return s;
+		}
+		@Override public int compareTo(HourGlass o) {
+			return (this.sum() == o.sum() ? 0 : (this.sum() < o.sum() ? -1 : 1));
+		}
+
+	}
+	
+	static final int[][] tests = {{1, 0, 1, 0, 1, 0},
+			                      {0, 1, 0, 1, 0, 1},
+	                              {1, 0, 1, 0, 1, 0},
+	                              {0, 1, 0, 1, 0, 1},
+	                              {1, 0, 1, 0, 1, 0},
+	                              {0, 1, 0, 1, 0, 1}};
+	/**
+	 * a b c
+	 *   d
+	 * e f g
+	 * @param values
+	 * @param x
+	 * @param y
+	 * @return
+	 */
+	static int[] getHourGlass(final int[][] values, int x, int y) {
+		return new int[]{values[x][y],   values[x+1][y], values[x+2][y],
+				                values[x+1][y+1],
+			    values[x][y+2], values[x+1][y+2], values[x+2][y+2]};		
+	}
+	
+	static void printHourGlass(int[] values) {
+		System.out.format("%d %d %d%n  %d%n%d %d %d%n", values[0], values[1], values[2], values[3], values[4], values[5], values[6]);
+	}
+
+	public static void main(String[] args) {
+		
+		int[] tt = {1, 2, 3, 4, 5, 6, 7};
+		printHourGlass(tt);
+		printHourGlass(getHourGlass(tests, 0, 0));
+
+	}
+}
